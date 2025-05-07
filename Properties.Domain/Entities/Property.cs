@@ -1,23 +1,20 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Diagnostics;
-
-namespace Properties.Domain.Entities
+﻿namespace Properties.Domain.Entities
 {
     public class Property : EntityBase
     {
-        public string Name { get; set; } = default!;
-        public string Address { get; set; } = default!;
-        public decimal Price { get; set; }
-        public string CodeInternal { get; set; } = default!;
-        public int Year { get; set; }
+        public string Name { get; private set; } = default!;
+        public string Address { get; private set; } = default!;
+        public decimal Price { get; private set; }
+        public string CodeInternal { get; private set; } = default!;
+        public int Year { get; private set; }
 
-        public Guid OwnerId { get; set; }
-        public Owner Owner { get; set; } = default!;
+        public Guid? OwnerId { get; private set; }
+        public Owner Owner { get; private set; } = default!;
 
         public ICollection<PropertyImage> Images { get; private set; } = [];
         public ICollection<PropertyTrace> Traces { get; private set; } = [];
 
-        private Property(Guid id, string name, string address, decimal price, string codeInternal, int year, Guid ownerId, DateTime createdAt)
+        private Property(Guid id, string name, string address, decimal price, string codeInternal, int year, Guid? ownerId, DateTime createdAt)
         {
             Id = id;
             Name = name;
@@ -29,8 +26,8 @@ namespace Properties.Domain.Entities
             CreatedAt = createdAt;
         }
 
-        public static Property Create(string name, string address, decimal price, string codeInternal, int year, Guid ownerId, DateTime createdAt) =>
-            new (Guid.NewGuid(), name, address, price, codeInternal, year, ownerId, createdAt);
+        public static Property Create(string name, string address, decimal price, string codeInternal, int year, Guid? ownerId = null) =>
+            new(Guid.NewGuid(), name, address, price, codeInternal, year, ownerId, DateTime.UtcNow);
 
         public void AddImage(string file)
         {

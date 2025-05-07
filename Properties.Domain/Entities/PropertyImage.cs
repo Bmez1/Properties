@@ -2,11 +2,11 @@
 {
     public class PropertyImage : EntityBase
     {
-        public string File { get; set; } = default!;
-        public bool Enabled { get; set; }
+        public string File { get; private set; } = default!;
+        public bool Enabled { get; private set; } = true;
 
-        public Guid PropertyId { get; set; }
-        public Property Property { get; set; } = default!;
+        public Guid PropertyId { get; private set; }
+        public Property Property { get; private set; } = default!;
 
         public PropertyImage(string file, bool enabled, Guid propertyId, DateTime createdAt)
         {
