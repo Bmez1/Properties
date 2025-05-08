@@ -3,6 +3,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 using Properties.Api.Extensions;
+using Properties.Api.GlobalException;
 using Properties.Api.Middleware;
 using Properties.Application;
 using Properties.Infraestructure;
@@ -24,6 +25,9 @@ builder.Services
 
 builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
 
 app.MapEndpoints();
@@ -38,6 +42,8 @@ app.MapHealthChecks("healthCheck", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.UseExceptionHandler();
 
 app.UseMiddleware<RequestLoggingMiddleware>();
 

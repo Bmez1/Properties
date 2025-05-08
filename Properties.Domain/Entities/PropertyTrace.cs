@@ -1,4 +1,6 @@
-﻿namespace Properties.Domain.Entities
+﻿using Crosscutting;
+
+namespace Properties.Domain.Entities
 {
     public class PropertyTrace : EntityBase
     {

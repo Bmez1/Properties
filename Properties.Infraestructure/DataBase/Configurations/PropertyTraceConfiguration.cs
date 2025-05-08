@@ -11,5 +11,7 @@ internal sealed class PropertyTraceConfiguration : IEntityTypeConfiguration<Prop
     {
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+        builder.Property(x => x.Value).HasPrecision(18, 2);
+        builder.Property(x => x.Tax).HasPrecision(18, 2);
     }
 }

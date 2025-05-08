@@ -1,4 +1,6 @@
-﻿namespace Properties.Domain.Entities
+﻿using Crosscutting;
+
+namespace Properties.Domain.Entities
 {
     public class Property : EntityBase
     {
@@ -26,8 +28,8 @@
             CreatedAt = createdAt;
         }
 
-        public static Property Create(string name, string address, decimal price, string codeInternal, int year, Guid? ownerId = null) =>
-            new(Guid.NewGuid(), name, address, price, codeInternal, year, ownerId, DateTime.UtcNow);
+        public static Property Create(string name, string address, decimal price, int year, Guid? ownerId = null) =>
+            new(Guid.NewGuid(), name, address, price, Guid.NewGuid().ToString(), year, ownerId, DateTime.UtcNow);
 
         public void AddImage(string file)
         {

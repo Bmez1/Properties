@@ -13,6 +13,7 @@ internal sealed class PropertyConfiguration : IEntityTypeConfiguration<Property>
         builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
         builder.Property(x => x.Address).IsRequired().HasMaxLength(100);
         builder.Property(x => x.CodeInternal).IsRequired().HasMaxLength(50);
+        builder.Property(x => x.Price).HasPrecision(18, 2);
 
         builder
         .HasOne(p => p.Owner)

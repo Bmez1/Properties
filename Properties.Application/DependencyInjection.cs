@@ -2,6 +2,8 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
+using Properties.Application.Behaviors;
+
 namespace Properties.Application
 {
     public static class DependencyInjection
@@ -11,6 +13,9 @@ namespace Properties.Application
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+
+                config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+                config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
             });
 
             services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly, includeInternalTypes: true);
