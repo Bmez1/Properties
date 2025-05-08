@@ -1,14 +1,16 @@
-﻿namespace Properties.Domain.Entities
+﻿using Crosscutting;
+
+namespace Properties.Domain.Entities
 {
     public class PropertyTrace : EntityBase
     {
-        public DateOnly DateSale { get; set; }
-        public string Name { get; set; } = default!;
-        public decimal Value { get; set; }
-        public decimal Tax { get; set; }
+        public DateOnly DateSale { get; private set; }
+        public string Name { get; private set; } = default!;
+        public decimal Value { get; private set; }
+        public decimal Tax { get; private set; }
 
-        public Guid PropertyId { get; set; }
-        public Property Property { get; set; } = default!;
+        public Guid PropertyId { get; private set; }
+        public Property Property { get; private set; } = default!;
 
 
         public PropertyTrace(Guid id, Guid propertyId, string name, DateOnly dateSale, decimal value, decimal tax, DateTime createdAt)
