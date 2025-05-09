@@ -1,13 +1,14 @@
 ﻿using Properties.Domain.Entities;
 
-namespace Properties.Domain.Interfaces
+namespace Properties.Application.Interfaces
 {
     public interface IPropertyRepository
     {
         Task<IEnumerable<Property>> GetAllAsync();
-        Task<Property> GetByIdAsync(Guid id);
+        IQueryable<Property> GetAll(bool asNoTracking = false);
+        Task<Property?> GetByIdAsync(Guid id, bool asNoTracking = false);
         Task<Property> CreateAsync(Property property);
-        Task<Property> UpdateAsync(Property property);
+        void Update(Property property);
         Task DeleteAsync(int id);
     }
 }

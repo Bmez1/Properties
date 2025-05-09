@@ -1,4 +1,4 @@
-﻿using Properties.Domain.Interfaces;
+﻿using Properties.Application.Interfaces;
 using Properties.Infraestructure.DataBase;
 
 namespace Properties.Infraestructure.Repositories

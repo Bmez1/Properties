@@ -1,6 +1,8 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
+using Properties.Application.Interfaces;
 using Properties.Domain.Entities;
-using Properties.Domain.Interfaces;
 using Properties.Infraestructure.DataBase;
 
 namespace Properties.Infraestructure.Repositories
@@ -11,6 +13,14 @@ namespace Properties.Infraestructure.Repositories
         {
             await context.Owners.AddAsync(owner);
             return owner;
+        }
+
+        public async Task<bool> ExistsByIdAsync(Guid id)
+        {
+            return await context
+                .Owners
+                .AsNoTracking()
+                .AnyAsync(x => x.Id == id);
         }
     }
 

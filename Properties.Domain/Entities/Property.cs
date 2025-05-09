@@ -4,6 +4,7 @@ namespace Properties.Domain.Entities
 {
     public class Property : EntityBase
     {
+        public const string NameDirectory = "Properties";
         public string Name { get; private set; } = default!;
         public string Address { get; private set; } = default!;
         public decimal Price { get; private set; }

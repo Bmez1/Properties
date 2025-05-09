@@ -30,7 +30,7 @@ internal sealed class Create : IEndpoint
 
             return result.ToHttpResponse();
         })
-        .WithTags("Owners");
+        .WithTags(Tags.Owners);
     }
 }
 

@@ -1,9 +1,11 @@
 ﻿using Properties.Domain.Entities;
 
-namespace Properties.Domain.Interfaces
+namespace Properties.Application.Interfaces
 {
     public interface IOwnerRepository
     {
         Task<Owner> CreateAsync(Owner owner);
+        Task<bool> ExistsByIdAsync(Guid id);
     }
+
 }

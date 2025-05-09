@@ -1,6 +1,8 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
+using Properties.Application.Interfaces;
 using Properties.Domain.Entities;
-using Properties.Domain.Interfaces;
 using Properties.Infraestructure.DataBase;
 
 namespace Properties.Infraestructure.Repositories
@@ -23,14 +25,20 @@ namespace Properties.Infraestructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Property> GetByIdAsync(Guid id)
+        public IQueryable<Property> GetAll(bool asNoTracking = false)
         {
-            throw new NotImplementedException();
+            return asNoTracking ? context.Properties.AsNoTracking().AsQueryable() : 
+                context.Properties.AsQueryable();
         }
 
-        public Task<Property> UpdateAsync(Property property)
+        public async Task<Property?> GetByIdAsync(Guid id, bool asNoTracking = false)
         {
-            throw new NotImplementedException();
+            return asNoTracking ? await context
+                .Properties
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id) : 
+                await context.Properties.FirstOrDefaultAsync(x => x.Id == id);
         }
+        public void Update(Property property) => context.Update(property);
     }
 }
