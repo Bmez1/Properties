@@ -2,8 +2,6 @@
 
 using MediatR;
 
-using Properties.Application.UseCases.Properties.Create;
-
 namespace Properties.Application.UseCases.Owners.Create
 {
     public sealed record CreateOwnerCommand(

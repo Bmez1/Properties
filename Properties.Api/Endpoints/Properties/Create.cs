@@ -32,7 +32,7 @@ internal sealed class Create : IEndpoint
 
             return result.ToHttpResponse(); ;
         })
-        .WithTags("Properties");
+        .WithTags(Tags.Properties);
     }
 }
 

@@ -1,4 +1,4 @@
-﻿namespace Properties.Domain.Interfaces
+﻿namespace Properties.Application.Interfaces
 {
     public interface IUnitOfWork
     {

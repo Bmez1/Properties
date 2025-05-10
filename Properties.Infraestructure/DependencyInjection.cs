@@ -2,9 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using Properties.Domain.Interfaces;
+using Properties.Application.Interfaces;
 using Properties.Infraestructure.DataBase;
 using Properties.Infraestructure.Repositories;
+using Properties.Infraestructure.Services;
 
 namespace Properties.Infraestructure
 {
@@ -21,6 +22,7 @@ namespace Properties.Infraestructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
             return services;
         }
 

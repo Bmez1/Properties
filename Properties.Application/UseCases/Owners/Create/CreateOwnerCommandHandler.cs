@@ -1,8 +1,9 @@
 ﻿using Crosscutting;
+
 using MediatR;
 
+using Properties.Application.Interfaces;
 using Properties.Domain.Entities;
-using Properties.Domain.Interfaces;
 
 namespace Properties.Application.UseCases.Owners.Create
 {
