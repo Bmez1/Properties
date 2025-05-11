@@ -23,5 +23,4 @@ namespace Properties.Infraestructure.Repositories
                 .AnyAsync(x => x.Id == id);
         }
     }
-
 }

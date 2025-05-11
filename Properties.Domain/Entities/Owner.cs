@@ -4,6 +4,7 @@ namespace Properties.Domain.Entities
 {
     public class Owner : EntityBase
     {
+        public const string Directory = "Owners";
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;
         public string? Photo { get; set; }
