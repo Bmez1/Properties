@@ -11,5 +11,6 @@
         public bool IsAvailable { get; init; } = default!;
         public Guid? OwnerId { get; init; }
         public string? OwnerName { get; init; }
+        public required int ImagesCount { get; init; }
     }
 }

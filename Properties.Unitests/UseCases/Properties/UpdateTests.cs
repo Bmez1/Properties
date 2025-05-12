@@ -85,12 +85,13 @@ namespace Properties.Unitests.UseCases.Properties
         public async Task Handle_Should_Update_Property_And_Create_Trace_When_Owner_Changes()
         {
             // Arrange
+            var owner = Owner.Create(_faker.Person.FullName, _faker.Address.FullAddress(), DateOnly.FromDateTime(_faker.Date.Past(30)));
             var oldOwnerId = Guid.NewGuid();
             var newOwnerId = Guid.NewGuid();
             var property = Property.Create(_faker.Company.CompanyName(), _faker.Address.FullAddress(), 150000, 2020, oldOwnerId);
 
             _propertyRepository.GetByIdAsync(property.Id, true).Returns(property);
-            _ownerRepository.ExistsByIdAsync(newOwnerId).Returns(true);
+            _ownerRepository.GetByIdAsync(newOwnerId).Returns(owner);
 
             var command = new UpdatePropertyCommad(
                 property.Id,

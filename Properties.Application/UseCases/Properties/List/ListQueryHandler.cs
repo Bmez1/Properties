@@ -39,7 +39,8 @@ namespace Properties.Application.UseCases.Properties.List
                     Price = p.Price,
                     Year = p.Year,
                     OwnerId = p.OwnerId,
-                    OwnerName = p.OwnerId == null ? string.Empty : p.Owner.Name
+                    OwnerName = p.OwnerId == null ? string.Empty : p.Owner.Name,
+                    ImagesCount = p.Images.Count
                 }).ToListAsync(cancellationToken);
 
             return Result.Success(propertiesDto.AsEnumerable(), totalData: await properties.CountAsync(cancellationToken));

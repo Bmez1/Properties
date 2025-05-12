@@ -23,16 +23,23 @@ namespace Properties.Application.UseCases.Properties.Update
 
             if (property.IsChangeOwner(request.OwnerId))
             {
-                if (request.OwnerId.HasValue && !await ownerRepository.ExistsByIdAsync(request.OwnerId.Value))
-                    return Result.Failure<Guid>(OwnerError.NotFoundById);
+                var ownerName = string.Empty;
+                if (request.OwnerId.HasValue)
+                {
+                    var owner = await ownerRepository.GetByIdAsync(request.OwnerId.Value);
+                    if (owner is null)
+                        return Result.Failure<Guid>(OwnerError.NotFoundById);
+                        
+                    ownerName = owner.Name;                    
+                }
 
                 var trace = PropertyTrace.Create
                 (
                     request.PropertyId,
-                    request.OwnerId.HasValue? request.Name : "Ownerless",
+                    request.OwnerId.HasValue? ownerName : "Ownerless",
                     DateTime.UtcNow,
                     request.Trace?.Value ?? property.Price,
-                    0
+                    request.Trace?.Tax ?? 0
                 );
 
                 await propertyTraceRepository.CreateAsync(trace);

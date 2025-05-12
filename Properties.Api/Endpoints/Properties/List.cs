@@ -19,8 +19,8 @@ namespace Properties.Api.Endpoints.Properties
             public int? MaxYear { get; init; }
             public string? OwnerName { get; init; }
 
-            public int? PageNumber { get; init; }
-            public int? PageSize { get; init; }
+            public int? PageNumber { get; init; } = 1;
+            public int? PageSize { get; init; } = 10;
 
 
             public static implicit operator PropertyFilterDto(RequestFilterDto dto)
@@ -50,8 +50,9 @@ namespace Properties.Api.Endpoints.Properties
             {
                 var result = await mediator.Send(new ListQuery(filter), cancellationToken);
 
-                return result.ToHttpResponse(); ;
+                return result.ToHttpResponse();
             })
+            .WithDescription("Returns a list of properties. PageNumber and PageSize default to 1 and 10.")
             .WithTags(Tags.Properties);
         }
     }
