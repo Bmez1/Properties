@@ -56,7 +56,8 @@ namespace Properties.Unitests.UseCases.Properties
 
             // Assert
             Assert.True(result.IsSuccess);
-            Assert.Equal(property.Id, result.Value);
+            Assert.Equal(property.Id, result.Value.PropertyId);
+            Assert.Equal("http://blobstorage.com/photo.jpg", result.Value.Image);
             await _blobStorageService.Received(1)
                 .UploadFileAsync(Arg.Any<Func<Stream>>(), Arg.Any<string>(), cancellationToken: Arg.Any<CancellationToken>());
 

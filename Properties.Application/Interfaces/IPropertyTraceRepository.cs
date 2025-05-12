@@ -5,5 +5,6 @@ namespace Properties.Application.Interfaces
     public interface IPropertyTraceRepository
     {
         Task CreateAsync(PropertyTrace trace);
+        IQueryable<PropertyTrace> GetAll();
     }
 }

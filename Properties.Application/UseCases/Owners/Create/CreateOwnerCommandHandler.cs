@@ -17,7 +17,7 @@ namespace Properties.Application.UseCases.Owners.Create
             string photoPath = string.Empty;
             if (request.Photo is not null)
             {
-                var fileName = Path.Combine(Owner.Directory, $"{DateTime.UtcNow: yyyyMMddHHmmss}{request.Photo.FileName}");
+                var fileName = Path.Combine([Owner.Directory, $"{DateTime.UtcNow:yyyyMMddHHmmss}{request.Photo.FileName}"]);
 
                 photoPath = await blobStorageService.UploadFileAsync(request.Photo.OpenReadStream, fileName, cancellationToken: cancellationToken);
             }

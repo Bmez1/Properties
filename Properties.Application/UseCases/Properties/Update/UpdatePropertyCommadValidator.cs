@@ -17,7 +17,7 @@ namespace Properties.Application.UseCases.Properties.Update
             When(x => x.Trace is not null, () =>
             {
                 RuleFor(x => x.Trace)
-                    .SetValidator(new ProertyTraceCreateValidation());
+                    .SetValidator(new PropertyTraceCreateValidator());
             });
         }
     }

@@ -4,12 +4,12 @@ using Properties.Application.UseCases.Properties.Create;
 
 namespace Properties.Application.UseCases.Owners.Create
 {
-    internal sealed class CreateOwnerValidation : AbstractValidator<CreateOwnerCommand>
+    internal sealed class CreateOwnerValidator : AbstractValidator<CreateOwnerCommand>
     {
         private static readonly string[] AllowedExtensions = [".jpg", ".jpeg", ".png", ".gif"];
         private const long MaxFileSizeInBytes = 5 * 1024 * 1024; // 5MB
 
-        public CreateOwnerValidation()
+        public CreateOwnerValidator()
         {
             RuleFor(x => x.Name).NotEmpty().MaximumLength(100);
             RuleFor(x => x.Address).NotEmpty().MaximumLength(100);

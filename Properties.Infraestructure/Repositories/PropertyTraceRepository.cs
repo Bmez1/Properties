@@ -1,4 +1,6 @@
-﻿using Properties.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Properties.Application.Interfaces;
 using Properties.Domain.Entities;
 using Properties.Infraestructure.DataBase;
 
@@ -9,6 +11,13 @@ namespace Properties.Infraestructure.Repositories
         public async Task CreateAsync(PropertyTrace trace)
         {
             await context.PropertyTraces.AddAsync(trace);
+        }
+
+        public IQueryable<PropertyTrace> GetAll()
+        {
+            return context.PropertyTraces
+                .AsNoTracking()
+                .AsQueryable();
         }
     }
 }

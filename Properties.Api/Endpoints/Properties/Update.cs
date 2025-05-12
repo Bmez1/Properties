@@ -51,12 +51,11 @@ namespace Properties.Api.Endpoints.Properties
         {
             app.MapPut("properties", async (UpdatePropertyRequest request, IMediator mediator, CancellationToken cancellationToken) =>
             {
-
                 var result = await mediator.Send((UpdatePropertyCommad)request, cancellationToken);
-
                 return result.ToHttpResponse(); ;
             })
-            .WithTags(Tags.Properties);
+            .WithTags(Tags.Properties)
+            .WithDescription("Updates a property");
         }
     }
 }
