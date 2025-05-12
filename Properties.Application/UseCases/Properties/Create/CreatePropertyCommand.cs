@@ -11,6 +11,7 @@ namespace Properties.Application.UseCases.Properties.Create
         string Address,
         decimal Price,
         int Year,
-        Guid? OwnerId
+        Guid? OwnerId,
+        PropertyTraceCreateDto Trace
     ) : IRequest<Result<CreatePropertyResponseDto>>;
 }

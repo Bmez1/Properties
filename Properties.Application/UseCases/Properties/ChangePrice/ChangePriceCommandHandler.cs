@@ -19,7 +19,6 @@ namespace Properties.Application.UseCases.Properties.ChangePrice
 
             property.UpdatePrice(request.Price);
 
-            propertyRepository.Update(property);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             return property.Id;

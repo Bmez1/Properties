@@ -15,20 +15,34 @@ namespace Properties.Application.UseCases.Properties.List
         {
             var properties = propertyRepository.GetAll(asNoTracking: true);
 
-            var propertiesDto = await properties.Select(p => new PropertyResponseDto
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Address = p.Address,
-                CodeInternal = p.CodeInternal,
-                IsAvailable = p.OwnerId == null,
-                Price = p.Price,
-                Year = p.Year,
-                OwnerId = p.OwnerId,
-                OwnerName = p.OwnerId == null ? string.Empty : p.Owner.Name
-            }).ToListAsync(cancellationToken);
+            var pageNumber = request.Filter.PageNumber ?? 1;
+            var pageSize = request.Filter.PageSize ?? 10;
+            var filter = request.Filter;
 
-            return Result.Success(propertiesDto.AsEnumerable(), totalData: propertiesDto.Count);
+            var propertiesDto = await properties
+                .Where(p => request.Filter.OwnerName == null || p.Owner.Name.Contains(request.Filter.OwnerName))
+                .Where(p => request.Filter.Address == null || p.Address.Contains(request.Filter.Address))
+                .Where(p => !filter.MinPrice.HasValue || p.Price >= filter.MinPrice)
+                .Where(p => !filter.MaxPrice.HasValue || p.Price <= filter.MaxPrice)
+                .Where(p => !filter.MinYear.HasValue || p.Year >= filter.MinYear)
+                .Where(p => !filter.MaxYear.HasValue || p.Year <= filter.MaxYear)
+                .OrderBy(p => p.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Select(p => new PropertyResponseDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Address = p.Address,
+                    CodeInternal = p.CodeInternal,
+                    IsAvailable = p.OwnerId == null,
+                    Price = p.Price,
+                    Year = p.Year,
+                    OwnerId = p.OwnerId,
+                    OwnerName = p.OwnerId == null ? string.Empty : p.Owner.Name
+                }).ToListAsync(cancellationToken);
+
+            return Result.Success(propertiesDto.AsEnumerable(), totalData: await properties.CountAsync(cancellationToken));
         }
     }
 }

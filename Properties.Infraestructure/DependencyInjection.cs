@@ -22,6 +22,7 @@ namespace Properties.Infraestructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPropertyRepository, PropertyRepository>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IPropertyTraceRepository, PropertyTraceRepository>();
             services.AddScoped<IBlobStorageService, BlobStorageService>();
             return services;
         }

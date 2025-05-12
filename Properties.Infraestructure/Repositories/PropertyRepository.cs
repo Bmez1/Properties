@@ -15,19 +15,9 @@ namespace Properties.Infraestructure.Repositories
             return property;
         }
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Property>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<Property> GetAll(bool asNoTracking = false)
         {
-            return asNoTracking ? context.Properties.AsNoTracking().AsQueryable() : 
+            return asNoTracking ? context.Properties.AsNoTracking().AsQueryable() :
                 context.Properties.AsQueryable();
         }
 
@@ -36,9 +26,17 @@ namespace Properties.Infraestructure.Repositories
             return asNoTracking ? await context
                 .Properties
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id) : 
+                .FirstOrDefaultAsync(x => x.Id == id) :
                 await context.Properties.FirstOrDefaultAsync(x => x.Id == id);
         }
         public void Update(Property property) => context.Update(property);
+
+        public async Task<bool> ExistsByIdAsync(Guid propertyId)
+        {
+            return await context
+                .Owners
+                .AsNoTracking()
+                .AnyAsync(x => x.Id == propertyId);
+        }
     }
 }

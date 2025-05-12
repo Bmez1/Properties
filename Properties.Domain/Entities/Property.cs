@@ -37,10 +37,12 @@ namespace Properties.Domain.Entities
             Images.Add(PropertyImage.Create(file));
         }
 
-        public void AddTrace(string name, DateOnly dateSale, decimal value, decimal tax)
+        public void AddTrace(string name, DateTime dateSale, decimal value, decimal tax)
         {
             Traces.Add(PropertyTrace.Create(Id, name, dateSale, value, tax));
         }
+
+        public bool IsChangeOwner(Guid? ownerId) => OwnerId != ownerId;
 
         public void UpdatePrice(decimal newPrice)
         {
@@ -48,5 +50,18 @@ namespace Properties.Domain.Entities
             Price = newPrice;
         }
 
+        public void Update(string name, string address, decimal price, int year, Guid? ownerId)
+        {
+            Name = name;
+            Address = address;
+            Price = price;
+            Year = year;
+            OwnerId = ownerId;
+        }
+
+        public void ChangeOwner(Guid id)
+        {
+            OwnerId = id;
+        }
     }
 }
