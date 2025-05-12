@@ -1,0 +1,784 @@
+{
+	"info": {
+		"_postman_id": "935900bf-a7b7-49fe-881c-533114d79177",
+		"name": "Properties.Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28862676"
+	},
+	"item": [
+		{
+			"name": "owners",
+			"item": [
+				{
+					"name": "properties",
+					"item": [
+						{
+							"name": "/owners/properties",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "{{correlationIdHeader}}",
+										"value": "{{generated_guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// endpoint para asignar una propiedad a un propietario\n{\n  \"propertyId\": \"<uuid>\",\n  \"ownerId\": \"<uuid>\",\n  \"trace\": {\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/owners/properties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners",
+										"properties"
+									]
+								},
+								"description": "### Add Owner's Property\n\nThis endpoint allows you to add a new property for a specific owner.\n\n#### Request Body\n\n- `propertyId` (Guid): The unique identifier of the property.\n    \n- `ownerId` (Guid): The unique identifier of the owner.\n    \n- `trace` (object):\n    \n    - `value` (number): The value of the property.\n        \n    - `tax` (number): The tax amount for the property.\n        \n\n#### Response\n\nThe response for this request can be `null` if the property addition is successful."
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"propertyId\": \"<uuid>\",\n  \"ownerId\": \"<uuid>\",\n  \"trace\": {\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/owners/properties",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"owners",
+												"properties"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "/owners",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data"
+							},
+							{
+								"key": "{{correlationIdHeader}}",
+								"value": "{{generated_guid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "John Doe",
+									"description": "(Required) ",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Colombia",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/bmez/Pictures/Screenshots/Captura de pantalla 2024-11-17 124748.png"
+								},
+								{
+									"key": "birthday",
+									"value": "1995-05-12",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "multipart/form-data"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "request",
+											"value": "[object Object]",
+											"description": "(Required) ",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/owners",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{correlationIdHeader}}",
+								"value": "{{generated_guid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/owners",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"owners"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/owners",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"owners"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "properties",
+			"item": [
+				{
+					"name": "{propertyId}",
+					"item": [
+						{
+							"name": "image",
+							"item": [
+								{
+									"name": "/properties/:propertyId/image",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "multipart/form-data"
+											},
+											{
+												"key": "{{correlationIdHeader}}",
+												"value": "{{generated_guid}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "image",
+													"description": "(Required) ",
+													"type": "file",
+													"src": "/C:/Users/bmez/Downloads/WhatsApp Image 2024-09-12 at 11.38.21 AM (1).jpeg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/properties/:propertyId/image",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"properties",
+												":propertyId",
+												"image"
+											],
+											"variable": [
+												{
+													"key": "propertyId",
+													"value": "7063f6b5-9e82-4f7f-ba3f-4673fb0ef337",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "multipart/form-data"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "file",
+															"value": "[object Object]",
+															"description": "(Required) ",
+															"type": "text"
+														}
+													]
+												},
+												"url": {
+													"raw": "{{baseUrl}}/properties/:propertyId/image",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"properties",
+														":propertyId",
+														"image"
+													],
+													"variable": [
+														{
+															"key": "propertyId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "price",
+					"item": [
+						{
+							"name": "/properties/price",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "{{correlationIdHeader}}",
+										"value": "{{generated_guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"propertyId\": \"53bfdf89-d93a-4b31-b8cb-511a12b116fc\",\n  \"newPrice\": \"5000000\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/properties/price",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties",
+										"price"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"propertyId\": \"<uuid>\",\n  \"newPrice\": \"<double>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/properties/price",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"properties",
+												"price"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "/properties",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"price\": \"<double>\",\n  \"year\": \"<integer>\",\n  \"ownerId\": \"<uuid>\", // campo opcional\n  \"trace\": { // campo opcional\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/properties",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"properties"
+							]
+						},
+						"description": "A este endpoint de crear una propiedad, así como se le puede asignar de una vez el propietario, también se puede crear sin propietario y luego asignarsela alguno"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"price\": \"<double>\",\n  \"year\": \"<integer>\",\n  \"ownerId\": \"<uuid>\",\n  \"trace\": {\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/properties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/properties",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{correlationIdHeader}}",
+								"value": "{{generated_guid}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/properties",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"properties"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "Address",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "MinPrice",
+									"value": "<double>",
+									"disabled": true
+								},
+								{
+									"key": "MaxPrice",
+									"value": "<double>",
+									"disabled": true
+								},
+								{
+									"key": "MinYear",
+									"value": "<integer>",
+									"disabled": true
+								},
+								{
+									"key": "MaxYear",
+									"value": "<integer>",
+									"disabled": true
+								},
+								{
+									"key": "OwnerName",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"key": "PageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "PageSize",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Este endpoint consulta las propiedades con o sin filtro. PageNumber y PageSize default to 1 and 10."
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/properties?Name=<string>&Address=<string>&MinPrice=<double>&MaxPrice=<double>&MinYear=<integer>&MaxYear=<integer>&OwnerName=<string>&PageNumber=<integer>&PageSize=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties"
+									],
+									"query": [
+										{
+											"key": "Name",
+											"value": "<string>"
+										},
+										{
+											"key": "Address",
+											"value": "<string>"
+										},
+										{
+											"key": "MinPrice",
+											"value": "<double>"
+										},
+										{
+											"key": "MaxPrice",
+											"value": "<double>"
+										},
+										{
+											"key": "MinYear",
+											"value": "<integer>"
+										},
+										{
+											"key": "MaxYear",
+											"value": "<integer>"
+										},
+										{
+											"key": "OwnerName",
+											"value": "<string>"
+										},
+										{
+											"key": "PageNumber",
+											"value": "<integer>"
+										},
+										{
+											"key": "PageSize",
+											"value": "<integer>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/properties",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "{{correlationIdHeader}}",
+								"value": "{{generated_guid}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"propertyId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"price\": \"<double>\",\n  \"year\": \"<integer>\",\n  \"ownerId\": \"<uuid>\",\n  \"trace\": {\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/properties",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"properties"
+							]
+						},
+						"description": "Para este endpoint el campo Trace el opcional si no se le cambia el propietario a la propiedad.\n\nSi se cambia el propietario y no se envía Trace, se registra una traza con los valores por default de la propiedad en cuanto al valor y el impuesto toma el valor de cero"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"propertyId\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"address\": \"<string>\",\n  \"price\": \"<double>\",\n  \"year\": \"<integer>\",\n  \"ownerId\": \"<uuid>\",\n  \"trace\": {\n    \"value\": \"<double>\",\n    \"tax\": \"<double>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/properties",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"properties"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PropertyTraces",
+			"item": [
+				{
+					"name": "GetTraces",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/propertyTraces/d0cc7906-98bf-4989-a519-cb41138adc15?PageNumber=1&PageSize=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"propertyTraces",
+								"d0cc7906-98bf-4989-a519-cb41138adc15"
+							],
+							"query": [
+								{
+									"key": "PageNumber",
+									"value": "1"
+								},
+								{
+									"key": "PageSize",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7069/propertyTraces/d0cc7906-98bf-4989-a519-cb41138adc15?PageNumber=1&PageSize=10' \\\r\n  -H 'accept: */*'"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"const uui = crypto.randomUUID();\r",
+					"pm.environment.set(\"generated_guid\", uui);\r",
+					"console.log(uui);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7069"
+		},
+		{
+			"key": "correlationIdHeader",
+			"value": "CorrelationId",
+			"type": "string"
+		},
+		{
+			"key": "generated_guid",
+			"value": "f63ccf96-99d5-4e04-a83c-b14ca8314c68",
+			"type": "string"
+		}
+	]
+}
