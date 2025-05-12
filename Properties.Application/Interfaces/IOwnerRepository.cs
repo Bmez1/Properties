@@ -6,6 +6,8 @@ namespace Properties.Application.Interfaces
     {
         Task<Owner> CreateAsync(Owner owner);
         Task<bool> ExistsByIdAsync(Guid id);
+        Task<Owner?> GetByIdAsync(Guid id, bool asNoTracking = false);
+        IQueryable<Owner> GetAll();
     }
 
 }

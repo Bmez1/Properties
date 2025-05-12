@@ -24,8 +24,6 @@ namespace Properties.Api.Endpoints.Properties
             {
                 var trace = dto.Trace is null ? null : new PropertyTraceCreateDto
                 {
-                    DateSale = dto.Trace.DateSale,
-                    Name = dto.Trace.Name,
                     Value = dto.Trace.Value,
                     Tax = dto.Trace.Tax
                 };
@@ -45,8 +43,6 @@ namespace Properties.Api.Endpoints.Properties
 
         public class PropertyTraceUpdateRequest
         {
-            public DateTime DateSale { get; init; }
-            public string Name { get; init; } = default!;
             public decimal Value { get; init; }
             public decimal Tax { get; init; }
         }

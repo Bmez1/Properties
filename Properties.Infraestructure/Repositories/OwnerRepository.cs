@@ -22,5 +22,22 @@ namespace Properties.Infraestructure.Repositories
                 .AsNoTracking()
                 .AnyAsync(x => x.Id == id);
         }
+
+        public IQueryable<Owner> GetAll()
+        {
+            return context
+                .Owners
+                .AsNoTracking()
+                .AsQueryable();
+        }
+
+        public async Task<Owner?> GetByIdAsync(Guid id, bool asNoTracking = false)
+        {
+            return asNoTracking ? await context
+                .Owners
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id) :
+                await context.Owners.FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

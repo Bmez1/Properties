@@ -58,5 +58,10 @@ namespace Properties.Domain.Entities
             Year = year;
             OwnerId = ownerId;
         }
+
+        public void ChangeOwner(Guid id)
+        {
+            OwnerId = id;
+        }
     }
 }

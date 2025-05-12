@@ -29,8 +29,8 @@ namespace Properties.Application.UseCases.Properties.Update
                 var trace = PropertyTrace.Create
                 (
                     request.PropertyId,
-                    request.OwnerId.HasValue? $"{request.Name} {request.Trace?.Name}".TrimEnd() : "Ownerless",
-                    request.Trace?.DateSale ?? DateTime.UtcNow.Date,
+                    request.OwnerId.HasValue? request.Name : "Ownerless",
+                    DateTime.UtcNow,
                     request.Trace?.Value ?? property.Price,
                     0
                 );

@@ -20,8 +20,6 @@ internal sealed class Create : IEndpoint
 
     public class PropertyTraceRequest
     {
-        public DateTime DateSale { get; init; }
-        public string Name { get; init; } = default!;
         public decimal Value { get; init; }
         public decimal Tax { get; init; }
     }
@@ -33,8 +31,6 @@ internal sealed class Create : IEndpoint
             var trace = request.Trace is null ? null : 
                 new PropertyTraceCreateDto
                 { 
-                    DateSale = request.Trace.DateSale, 
-                    Name = request.Trace.Name,
                     Value = request.Trace.Value,
                     Tax = request.Trace.Tax
                 };

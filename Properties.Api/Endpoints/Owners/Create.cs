@@ -38,7 +38,6 @@ internal sealed class Create : IEndpoint
         })
         .WithTags(Tags.Owners)
         .Accepts<UploadImageRequest>("multipart/form-data")
-        .DisableAntiforgery(); ;
+        .DisableAntiforgery();
     }
 }
-

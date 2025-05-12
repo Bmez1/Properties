@@ -8,8 +8,6 @@ namespace Properties.Application.UseCases.Properties.Create
     {
         public ProertyTraceCreateValidation()
         {
-            RuleFor(x => x.DateSale).NotEmpty();
-            RuleFor(x => x.Name).NotEmpty();
             RuleFor(x => x.Value).NotEmpty().GreaterThan(0);
             RuleFor(x => x.Tax).GreaterThanOrEqualTo(0);
         }

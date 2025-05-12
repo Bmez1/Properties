@@ -21,10 +21,11 @@ namespace Properties.Application.UseCases.Properties.Create
 
             if (request.OwnerId is not null)
             {
-                if (!await ownerRepository.ExistsByIdAsync(request.OwnerId.Value))
+                var owner = await ownerRepository.GetByIdAsync(request.OwnerId.Value);
+                if (owner is null)
                     return Result.Failure<CreatePropertyResponseDto>(OwnerError.NotFoundById);
 
-                newProperty.AddTrace(request.Trace.Name, request.Trace.DateSale, request.Trace.Value, request.Trace.Tax);
+                newProperty.AddTrace(owner.Name, DateTime.UtcNow, request.Trace.Value, request.Trace.Tax);
             }
 
             await propertyRepository.CreateAsync(newProperty);
