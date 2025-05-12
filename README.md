@@ -1,3 +1,16 @@
+#Properties API
+
+What's included
+
+- Domain layer with sample entities.
+- Application layer with abstractions for:
+  - CQRS
+  - Example use cases
+  - Cross-cutting concerns (logging, validation)
+- Infrastructure layer with:
+  - EF Core, SQLServer
+  - Serilog
+
 El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Design, con una clara separación de las capas de dominio, aplicación e infraestructura.
 
 ## Patrones de Diseño y Principios
@@ -16,7 +29,6 @@ El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Desig
 - Clonar el Repositorio: git clone <URL del repositorio>
 - Restaurar Paquetes: Ejecutar dotnet restore para restaurar los paquetes NuGet.
 - Configurar la Base de Datos: Asegurarse de que la cadena de conexión en appsettings.json esté configurada correctamente.
-- Configurar parametros SMTP: Asegurarse de plasmar los valores para la conexión SMTP para el envío de correos electrónicos
 - Ejecutar Migraciones: dotnet ef database update para aplicar las migraciones de la base de datos.
 - Ejecutar la Aplicación: dotnet run para iniciar la aplicación.
 
