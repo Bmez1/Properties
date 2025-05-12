@@ -44,7 +44,6 @@ namespace Properties.Application.UseCases.Properties.Update
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             return property.Id;
-
         }
     }
 }

@@ -9,7 +9,7 @@ using Properties.Application.UseCases.Owners.Dtos;
 
 namespace Properties.Application.UseCases.Owners.List
 {
-    public class ListqueryHandler(IOwnerRepository ownerRepository) : IRequestHandler<ListQuery, Result<IEnumerable<OwnerResponseDto>>>
+    public class ListQueryHandler(IOwnerRepository ownerRepository) : IRequestHandler<ListQuery, Result<IEnumerable<OwnerResponseDto>>>
     {
         public async Task<Result<IEnumerable<OwnerResponseDto>>> Handle(ListQuery request, CancellationToken cancellationToken)
         {
