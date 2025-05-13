@@ -9,6 +9,7 @@ What's included
   - Cross-cutting concerns (logging, validation)
 - Infrastructure layer with:
   - EF Core, SQLServer
+  - JWT
   - Serilog
 
 El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Design, con una clara separación de las capas de dominio, aplicación e infraestructura.
