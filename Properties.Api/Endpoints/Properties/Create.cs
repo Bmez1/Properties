@@ -48,6 +48,7 @@ internal sealed class Create : IEndpoint
 
             return result.ToHttpResponse(); ;
         })
+        .RequireAuthorization()
         .WithTags(Tags.Properties);
     }
 }

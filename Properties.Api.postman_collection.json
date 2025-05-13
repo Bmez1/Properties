@@ -715,13 +715,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/propertyTraces/d0cc7906-98bf-4989-a519-cb41138adc15?PageNumber=1&PageSize=10",
+							"raw": "{{baseUrl}}/propertyTraces/:propertyId?PageNumber=1&PageSize=10",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"propertyTraces",
-								"d0cc7906-98bf-4989-a519-cb41138adc15"
+								":propertyId"
 							],
 							"query": [
 								{
@@ -732,6 +732,12 @@
 									"key": "PageSize",
 									"value": "10"
 								}
+							],
+							"variable": [
+								{
+									"key": "propertyId",
+									"value": "7063f6b5-9e82-4f7f-ba3f-4673fb0ef337"
+								}
 							]
 						},
 						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://localhost:7069/propertyTraces/d0cc7906-98bf-4989-a519-cb41138adc15?PageNumber=1&PageSize=10' \\\r\n  -H 'accept: */*'"
@@ -739,8 +745,123 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta tenga éxito\r",
+									"if (pm.response.code === 200) {\r",
+									"    const jsonData = pm.response.json();\r",
+									"\r",
+									"    if (jsonData.data) {\r",
+									"        pm.environment.set(\"token\", jsonData.data);\r",
+									"        console.log(\"Token guardado:\", jsonData.data);\r",
+									"    } else {\r",
+									"        console.warn(\"La propiedad 'data' no está presente en la respuesta.\");\r",
+									"    }\r",
+									"} else {\r",
+									"    console.error(\"La solicitud no fue exitosa:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"daniel.bmez@hotmail.com\",\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7069/users/login' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"email\": \"daniel.bmez@hotmail.com\",\r\n  \"password\": \"password\"\r\n}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"daniel.bmez2@hotmail.com\",\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7069/users/register' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"email\": \"daniel.bmez1@hotmail.com\",\r\n  \"password\": \"password\"\r\n}'"
+					},
+					"response": []
+				}
+			],
+			"description": "Estos dos enpoints no necesitan que el usuario esté autenticado en el sistema. Sin embargo, si es la primera vez que usa la API, registre un usuario y luego inicie sesión.\n\nAutenticado en el sistema, proceda a consumir los demás endpoints ya que el token se almacena en una variable que es usada por los demás"
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
@@ -773,11 +894,6 @@
 		{
 			"key": "correlationIdHeader",
 			"value": "CorrelationId",
-			"type": "string"
-		},
-		{
-			"key": "generated_guid",
-			"value": "f63ccf96-99d5-4e04-a83c-b14ca8314c68",
 			"type": "string"
 		}
 	]

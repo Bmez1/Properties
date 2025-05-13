@@ -32,6 +32,7 @@ namespace Properties.Api.Endpoints.Properties
 
                 return result.ToHttpResponse();
             })
+            .RequireAuthorization()
             .WithTags(Tags.Properties);
         }
     }

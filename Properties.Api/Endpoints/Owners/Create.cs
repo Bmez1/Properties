@@ -36,6 +36,7 @@ internal sealed class Create : IEndpoint
 
             return result.ToHttpResponse();
         })
+        .RequireAuthorization()
         .WithTags(Tags.Owners)
         .Accepts<UploadImageRequest>("multipart/form-data")
         .DisableAntiforgery();

@@ -39,6 +39,7 @@ internal sealed class AddProperty : IEndpoint
 
             return result.ToHttpResponse();
         })
+        .RequireAuthorization()
         .WithTags(Tags.Owners)
         .WithDescription("Add property to owner");
     }
