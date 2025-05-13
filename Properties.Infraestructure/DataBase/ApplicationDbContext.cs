@@ -10,6 +10,7 @@ namespace Properties.Infraestructure.DataBase
         public DbSet<Property> Properties { get; set; }
         public DbSet<PropertyTrace> PropertyTraces { get; set; }
         public DbSet<PropertyImage> PropertyImages { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

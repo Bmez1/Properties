@@ -3,8 +3,6 @@
 using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Owners.List;
 
-using static Properties.Api.Endpoints.Properties.AddImage;
-
 namespace Properties.Api.Endpoints.Owners;
 
 internal sealed class List : IEndpoint
@@ -17,6 +15,7 @@ internal sealed class List : IEndpoint
 
             return result.ToHttpResponse();
         })
+        .RequireAuthorization()
         .WithTags(Tags.Owners);
     }
 }

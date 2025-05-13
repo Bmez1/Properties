@@ -6,4 +6,5 @@
 
         Task<Stream?> DownloadFileAsync(string fileName, CancellationToken cancellationToken = default);
     }
+
 }

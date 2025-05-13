@@ -25,6 +25,7 @@ namespace Properties.Api.Endpoints.PropertyTraces
 
                 return result.ToHttpResponse();
             })
+            .RequireAuthorization()
             .WithDescription("List property traces. Returns a paged list of property traces. PageNumber and PageSize default to 1 and 10.")
             .WithTags(Tags.PropertyTraces);
         }

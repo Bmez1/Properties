@@ -54,6 +54,7 @@ namespace Properties.Api.Endpoints.Properties
                 var result = await mediator.Send((UpdatePropertyCommad)request, cancellationToken);
                 return result.ToHttpResponse(); ;
             })
+            .RequireAuthorization()
             .WithTags(Tags.Properties)
             .WithDescription("Updates a property");
         }

@@ -52,6 +52,7 @@ namespace Properties.Api.Endpoints.Properties
 
                 return result.ToHttpResponse();
             })
+            .RequireAuthorization()
             .WithDescription("Returns a list of properties. PageNumber and PageSize default to 1 and 10.")
             .WithTags(Tags.Properties);
         }
