@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Crosscutting;
+
+using MediatR;
 
 using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Owners.AddProperty;
@@ -41,7 +43,9 @@ internal sealed class AddProperty : IEndpoint
         })
         .RequireAuthorization()
         .WithTags(Tags.Owners)
-        .WithDescription("Add property to owner");
+        .WithSummary("Assigns a property to an owner.")
+        .WithDescription("Creates a new ownership relationship between a property and an owner, including the value and tax trace.")
+        .WithOpenApi();
     }
 }
 

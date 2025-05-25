@@ -1,3 +1,6 @@
+using Asp.Versioning;
+using Asp.Versioning.Builder;
+
 using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -16,9 +19,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
+builder.Services.AddVersioning();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGenWithAuth();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Services
     .AddApplication()
@@ -31,7 +35,17 @@ builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
-app.MapEndpoints();
+ApiVersionSet apiVersionSet = app.NewApiVersionSet()
+    .HasApiVersion(new ApiVersion(1))
+    .HasApiVersion(new ApiVersion(2))
+    .ReportApiVersions()
+    .Build();
+
+RouteGroupBuilder routeGroupBuilder = app
+    .MapGroup("api/v{version:apiVersion}")
+    .WithApiVersionSet(apiVersionSet);
+
+app.MapEndpoints(routeGroupBuilder);
 
 if (app.Environment.IsDevelopment())
 {
