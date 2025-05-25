@@ -1,4 +1,4 @@
-#Properties API
+# Properties API
 
 What's included
 
@@ -9,6 +9,7 @@ What's included
   - Cross-cutting concerns (logging, validation)
 - Infrastructure layer with:
   - EF Core, SQLServer
+  - JWT
   - Serilog
 
 El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Design, con una clara separación de las capas de dominio, aplicación e infraestructura.
@@ -26,10 +27,12 @@ El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Desig
  -Xunit: Para pruebas unitarias.
 
 ## Instalación y Configuración
-- Clonar el Repositorio: git clone <URL del repositorio>
+- Clonar el Repositorio: git clone <https://github.com/Bmez1/Properties>
 - Restaurar Paquetes: Ejecutar dotnet restore para restaurar los paquetes NuGet.
 - Configurar la Base de Datos: Asegurarse de que la cadena de conexión en appsettings.json esté configurada correctamente.
 - Ejecutar Migraciones: dotnet ef database update para aplicar las migraciones de la base de datos.
 - Ejecutar la Aplicación: dotnet run para iniciar la aplicación.
+
+- Mas información <https://deepwiki.com/Bmez1/Properties/1-overview>
 
 Especialista en Ingeniría de Software Daniel Barros Agamez
