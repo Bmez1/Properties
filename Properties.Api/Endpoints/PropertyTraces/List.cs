@@ -10,8 +10,8 @@ namespace Properties.Api.Endpoints.PropertyTraces
     {
         public class FilterRequestTraces
         {
-            public int PageNumber { get; init; }
-            public int PageSize { get; init; }
+            public int? PageNumber { get; init; } = 1;
+            public int? PageSize { get; init; } = 10;
         }
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
@@ -26,7 +26,8 @@ namespace Properties.Api.Endpoints.PropertyTraces
                 return result.ToHttpResponse();
             })
             .RequireAuthorization()
-            .WithDescription("List property traces. Returns a paged list of property traces. PageNumber and PageSize default to 1 and 10.")
+            .WithSummary("Listar seguimientos de precios de una propiedad")
+            .WithDescription("Devuelve una lista paginada de seguimientos de propiedades. Los valores predeterminados de PageNumber y PageSize son 1 y 10.")
             .WithTags(Tags.PropertyTraces);
         }
     }

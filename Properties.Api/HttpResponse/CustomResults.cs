@@ -79,21 +79,21 @@ public static class CustomResults
     }
 }
 
-public sealed class ApiResponseSuccessful<T>
+public sealed class ApiResponseSuccessful<TIn>
 {
     public bool IsSuccess { get; }
     public string? Message { get; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public int? TotalData { get; }
-    public T Data { get; set; }
+    public TIn Data { get; set; }
 
-    private ApiResponseSuccessful(T data, int? totalData = null)
+    private ApiResponseSuccessful(TIn data, int? totalData = null)
     {
         IsSuccess = true;
         Message = "Successful request.";
         Data = data;
         TotalData = totalData;
     }
-    public static ApiResponseSuccessful<T> Create(T data, int? totalData = null) => new(data, totalData);
+    public static ApiResponseSuccessful<TIn> Create(TIn data, int? totalData = null) => new(data, totalData);
 }

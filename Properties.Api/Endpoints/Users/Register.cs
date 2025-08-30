@@ -13,7 +13,7 @@ internal sealed class Register : IEndpoint
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("users/register", async (RegisterUserRequest request, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPost("users", async (RegisterUserRequest request, ISender sender, CancellationToken cancellationToken) =>
         {
             var command = new RegisterUserCommand(
                 request.Email,
@@ -21,8 +21,10 @@ internal sealed class Register : IEndpoint
 
             Result<Guid> result = await sender.Send(command, cancellationToken);
 
-            return result.ToHttpResponse();
+            return result.ToHttpResponse(Results.Created);
         })
+        .WithSummary("Registrar usuario.")
+        .WithDescription("Use su correo y una contraseña para registrar un nuevo usuario.")
         .WithTags(Tags.Users);
     }
 }

@@ -16,6 +16,8 @@ internal sealed class List : IEndpoint
             return result.ToHttpResponse();
         })
         .RequireAuthorization()
+        .WithSummary("Retorna la lista de propietarios registrados en el sistema.")
+        .WithDescription("Devuelve los datos personales del propietario, la cantidad total de propiedades asociadas y la imagen del propietario si existe.")
         .WithTags(Tags.Owners);
     }
 }

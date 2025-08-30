@@ -1,13 +1,8 @@
 ﻿
 using MediatR;
 
-using Microsoft.AspNetCore.Mvc;
-
 using Properties.Api.HttpResponse;
-using Properties.Application.UseCases.Owners.Create;
 using Properties.Application.UseCases.Properties.ChangePrice;
-
-using static Properties.Api.Endpoints.Owners.Create;
 
 namespace Properties.Api.Endpoints.Properties
 {
@@ -33,6 +28,8 @@ namespace Properties.Api.Endpoints.Properties
                 return result.ToHttpResponse();
             })
             .RequireAuthorization()
+            .WithSummary("Cambia el precio de una propiedad.")
+            .WithDescription("Cambia el precio de una propiedad.")
             .WithTags(Tags.Properties);
         }
     }

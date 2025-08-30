@@ -1,6 +1,8 @@
 ﻿
 using MediatR;
 
+using Microsoft.AspNetCore.Mvc;
+
 using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Properties.Dtos;
 using Properties.Application.UseCases.Properties.Update;
@@ -49,14 +51,19 @@ namespace Properties.Api.Endpoints.Properties
 
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPut("properties", async (UpdatePropertyRequest request, IMediator mediator, CancellationToken cancellationToken) =>
+            app.MapPut("properties/{propertyId:guid}", async (
+                [FromRoute] Guid propertyId,
+                UpdatePropertyRequest request, 
+                IMediator mediator, 
+                CancellationToken cancellationToken) =>
             {
                 var result = await mediator.Send((UpdatePropertyCommad)request, cancellationToken);
-                return result.ToHttpResponse(); ;
+                return result.ToHttpResponse();
             })
             .RequireAuthorization()
             .WithTags(Tags.Properties)
-            .WithDescription("Updates a property");
+            .WithSummary("Actualiza una propiedad.")
+            .WithDescription("Use este endpoint para actualizar todos los valores de una propiedad.");
         }
     }
 }

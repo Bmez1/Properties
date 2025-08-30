@@ -52,12 +52,12 @@ internal sealed class Create : IEndpoint
 
             var result = await mediator.Send(command, cancellationToken);
 
-            return result.ToHttpResponse(); ;
+            return result.ToHttpResponse();
         })
         .RequireAuthorization()
         .WithTags(Tags.Properties)
-        .WithSummary("Creates a new property.")
-        .WithDescription("Creates a new property, optionally assigning an owner and property trace.");
+        .WithSummary("Crea una nueva propiedad.")
+        .WithDescription("Crea una nueva propiedad. Opcionalmente se le asigna un propietario y una traza de seguimiento de la propiedad.");
     }
 }
 

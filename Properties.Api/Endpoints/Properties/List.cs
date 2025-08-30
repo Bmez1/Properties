@@ -5,6 +5,8 @@ using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Properties.Dtos;
 using Properties.Application.UseCases.Properties.List;
 
+using System.Text.Json.Serialization;
+
 namespace Properties.Api.Endpoints.Properties
 {
     public class List : IEndpoint
@@ -53,7 +55,8 @@ namespace Properties.Api.Endpoints.Properties
                 return result.ToHttpResponse();
             })
             .RequireAuthorization()
-            .WithDescription("Returns a list of properties. PageNumber and PageSize default to 1 and 10.")
+            .WithSummary("Retorna una lista de propiedades paginadas y con filtros de busqueda.")
+            .WithDescription("Retorna una lista de propiedades paginadas y con filtros de busqueda. La paginacion por defecto es de 10 propiedades por pagina.")
             .WithTags(Tags.Properties);
         }
     }

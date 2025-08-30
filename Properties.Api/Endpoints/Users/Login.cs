@@ -3,7 +3,6 @@
 using MediatR;
 
 using Properties.Api.HttpResponse;
-using Properties.Application.UseCases.Users;
 using Properties.Application.UseCases.Users.Login;
 
 namespace Properties.Api.Endpoints.Users;
@@ -22,6 +21,8 @@ internal sealed class Login : IEndpoint
 
             return result.ToHttpResponse();
         })
+        .WithSummary("Iniciar sesión.")
+        .WithDescription("Use su correo y su contraseña para iniciar sesión.")
         .WithTags(Tags.Users);
     }
 }
