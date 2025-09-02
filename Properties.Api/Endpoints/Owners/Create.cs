@@ -10,7 +10,7 @@ using static Properties.Api.Endpoints.Properties.AddImage;
 
 namespace Properties.Api.Endpoints.Owners;
 
-internal sealed class Create : IEndpoint
+public sealed class Create : IEndpoint
 {
     public sealed class CreateOwnerRequest
     {

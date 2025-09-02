@@ -13,7 +13,6 @@ namespace Properties.Api.Endpoints.Properties
     {
         public class UpdatePropertyRequest
         {
-            public Guid PropertyId { get; init; }
             public string Name { get; init; } = default!;
             public string Address { get; init; } = default!;
             public decimal Price { get; init; }
@@ -22,7 +21,7 @@ namespace Properties.Api.Endpoints.Properties
             public PropertyTraceUpdateRequest? Trace { get; init; }
 
 
-            public static explicit operator UpdatePropertyCommad(UpdatePropertyRequest dto)
+            public static UpdatePropertyCommad ToCommand(UpdatePropertyRequest dto, Guid propertyId)
             {
                 var trace = dto.Trace is null ? null : new PropertyTraceCreateDto
                 {
@@ -32,7 +31,7 @@ namespace Properties.Api.Endpoints.Properties
 
                 return new UpdatePropertyCommad
                 (
-                    dto.PropertyId,
+                    propertyId,
                     dto.Name,
                     dto.Address,
                     dto.Price,
@@ -57,7 +56,7 @@ namespace Properties.Api.Endpoints.Properties
                 IMediator mediator, 
                 CancellationToken cancellationToken) =>
             {
-                var result = await mediator.Send((UpdatePropertyCommad)request, cancellationToken);
+                var result = await mediator.Send((UpdatePropertyRequest.ToCommand(request, propertyId)), cancellationToken);
                 return result.ToHttpResponse();
             })
             .RequireAuthorization()

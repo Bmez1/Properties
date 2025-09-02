@@ -5,11 +5,9 @@ using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Properties.Dtos;
 using Properties.Application.UseCases.Properties.List;
 
-using System.Text.Json.Serialization;
-
 namespace Properties.Api.Endpoints.Properties
 {
-    public class List : IEndpoint
+    public sealed class List : IEndpoint
     {
         public class RequestFilterDto
         {

@@ -19,7 +19,7 @@ internal sealed class PropertyConfiguration : IEntityTypeConfiguration<Property>
         .HasOne(p => p.Owner)
         .WithMany(p => p.Properties)
         .HasForeignKey(h => h.OwnerId)
-        .OnDelete(DeleteBehavior.SetNull);
+        .OnDelete(DeleteBehavior.Restrict);
 
         builder
         .HasMany(p => p.Traces)

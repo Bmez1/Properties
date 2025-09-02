@@ -30,7 +30,7 @@ namespace Properties.Infraestructure
             services.AddScoped<IPropertyTraceRepository, PropertyTraceRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-            services.AddScoped<IBlobStorageService, BlobStorageService>();           
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
 
             return services;
         }
@@ -64,11 +64,15 @@ namespace Properties.Infraestructure
 
         private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            string? connectionString = configuration.GetConnectionString("DefaultConnection");
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            if (env != "IntegrationTesting")
+            {
+                string? connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<ApplicationDbContext>(
-                options => options
-                    .UseSqlServer(connectionString));
+                services.AddDbContext<ApplicationDbContext>(
+                    options => options
+                        .UseSqlServer(connectionString));
+            }
 
             return services;
         }

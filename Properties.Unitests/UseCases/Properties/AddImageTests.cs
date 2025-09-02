@@ -35,7 +35,8 @@ namespace Properties.Unitests.UseCases.Properties
                 _faker.Address.StreetName(),
                 _faker.Address.FullAddress(),
                 _faker.Random.Decimal(100000, 300000),
-                _faker.Random.Int(1990, 2024)
+                _faker.Random.Int(1990, 2024),
+                Guid.NewGuid()
             );
 
             var fileUpload = Substitute.For<IFileUpload>();

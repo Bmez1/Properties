@@ -6,7 +6,7 @@ using Properties.Application.UseCases.PropertyTraces.List;
 
 namespace Properties.Api.Endpoints.PropertyTraces
 {
-    internal sealed class List : IEndpoint
+    public sealed class List : IEndpoint
     {
         public class FilterRequestTraces
         {

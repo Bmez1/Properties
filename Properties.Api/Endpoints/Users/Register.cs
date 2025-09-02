@@ -7,7 +7,7 @@ using Properties.Application.UseCases.Users.Register;
 
 namespace Properties.Api.Endpoints.Users;
 
-internal sealed class Register : IEndpoint
+public sealed class Register : IEndpoint
 {
     public sealed record RegisterUserRequest(string Email, string Password);
 

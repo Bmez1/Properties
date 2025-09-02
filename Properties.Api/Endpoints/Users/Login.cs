@@ -7,7 +7,7 @@ using Properties.Application.UseCases.Users.Login;
 
 namespace Properties.Api.Endpoints.Users;
 
-internal sealed class Login : IEndpoint
+public sealed class Login : IEndpoint
 {
     public sealed record Request(string Email, string Password);
 

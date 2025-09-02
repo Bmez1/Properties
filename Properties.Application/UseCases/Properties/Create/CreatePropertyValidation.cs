@@ -10,13 +10,11 @@ namespace Properties.Application.UseCases.Properties.Create
             RuleFor(x => x.Address).NotEmpty().MaximumLength(100);
             RuleFor(x => x.Year).GreaterThan(0);
             RuleFor(x => x.Price).GreaterThan(0);
+            RuleFor(x => x.OwnerId).NotNull();
 
-            When(x => x.OwnerId.HasValue, () =>
-            {
-                RuleFor(x => x.Trace)
-                    .NotNull()
-                    .SetValidator(new PropertyTraceCreateValidator());
-            });
+            RuleFor(x => x.Trace)
+                .NotNull()
+                .SetValidator(new PropertyTraceCreateValidator());
         }
     }
 }

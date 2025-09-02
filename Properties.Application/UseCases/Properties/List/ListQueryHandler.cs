@@ -35,12 +35,12 @@ namespace Properties.Application.UseCases.Properties.List
                     Name = p.Name,
                     Address = p.Address,
                     CodeInternal = p.CodeInternal,
-                    IsAvailable = p.OwnerId == null,
                     Price = p.Price,
                     Year = p.Year,
                     OwnerId = p.OwnerId,
-                    OwnerName = p.OwnerId == null ? string.Empty : p.Owner.Name,
-                    ImagesCount = p.Images.Count
+                    OwnerName = p.Owner.Name,
+                    ImagesCount = p.Images.Count,
+                    ImagesUrl = p.Images.Where(i => i.Enabled).Select(i => i.File)
                 }).ToListAsync(cancellationToken);
 
             return Result.Success(propertiesDto.AsEnumerable(), totalData: await properties.CountAsync(cancellationToken));

@@ -5,10 +5,10 @@ namespace Properties.Domain.Entities
     public class Owner : EntityBase
     {
         public const string Directory = "Owners";
-        public string Name { get; set; } = default!;
-        public string Address { get; set; } = default!;
-        public string? Photo { get; set; }
-        public DateOnly Birthday { get; set; }
+        public string Name { get; private set; }
+        public string Address { get; private set; }
+        public string? Photo { get; private set; }
+        public DateOnly Birthday { get; private set; }
 
         public ICollection<Property> Properties { get; private set; } = [];
 
@@ -32,6 +32,5 @@ namespace Properties.Domain.Entities
             ArgumentNullException.ThrowIfNull(property);
             Properties.Add(property);
         }
-
     }
 }

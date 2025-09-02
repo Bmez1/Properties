@@ -12,6 +12,6 @@ namespace Properties.Application.UseCases.Properties.Update
         string Address,
         decimal Price, 
         int Year, 
-        Guid? OwnerId,
+        Guid OwnerId,
         PropertyTraceCreateDto Trace) : IRequest<Result<Guid>>;
 }

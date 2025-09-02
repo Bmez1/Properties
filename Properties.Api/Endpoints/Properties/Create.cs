@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Properties.Api.Endpoints.Properties;
 
-internal sealed class Create : IEndpoint
+public sealed class Create : IEndpoint
 {
     public sealed class CreatePropertyRequest
     {
@@ -19,9 +19,9 @@ internal sealed class Create : IEndpoint
         public decimal Price { get; set; }
         public int Year { get; set; }
         [property: Description("Optional owner id")]
-        public Guid? OwnerId { get; set; }
-        [property: Description("Optional trace info like property value and tax")]
-        public PropertyTraceRequest? Trace { get; set; }
+        public Guid OwnerId { get; set; }
+        [property: Description("Trace info like property value and tax")]
+        public PropertyTraceRequest Trace { get; set; } = default!;
     }
 
     public class PropertyTraceRequest
@@ -57,7 +57,7 @@ internal sealed class Create : IEndpoint
         .RequireAuthorization()
         .WithTags(Tags.Properties)
         .WithSummary("Crea una nueva propiedad.")
-        .WithDescription("Crea una nueva propiedad. Opcionalmente se le asigna un propietario y una traza de seguimiento de la propiedad.");
+        .WithDescription("Crea una nueva propiedad asociada con un propietario y una traza de seguimiento de la propiedad.");
     }
 }
 

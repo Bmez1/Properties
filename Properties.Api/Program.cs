@@ -22,7 +22,6 @@ builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configu
 builder.Services.AddVersioning();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGenWithAuth();
-builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
@@ -70,3 +69,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.Run();
+
+public partial class Program { }

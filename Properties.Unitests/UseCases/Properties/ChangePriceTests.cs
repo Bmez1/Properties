@@ -28,7 +28,7 @@ namespace Properties.Unitests.UseCases.Properties
         {
             // Arrange
             var faker = new Faker();
-            var property = Property.Create(faker.Address.StreetName(), faker.Address.FullAddress(), faker.Random.Decimal(100000, 200000), 2020);
+            var property = Property.Create(faker.Address.StreetName(), faker.Address.FullAddress(), faker.Random.Decimal(100000, 200000), 2020, Guid.NewGuid());
             var newPrice = faker.Random.Decimal(250000, 300000);
 
             _propertyRepository.GetByIdAsync(property.Id).Returns(property);
@@ -65,7 +65,7 @@ namespace Properties.Unitests.UseCases.Properties
         public async Task Handle_Should_Throw_When_NewPrice_Is_Invalid()
         {
             // Arrange
-            var property = Property.Create("Casa", "Calle 1", 100000, 2022);
+            var property = Property.Create("Casa", "Calle 1", 100000, 2022, Guid.NewGuid());
             var command = new ChangePriceCommand(property.Id, 0);
 
             _propertyRepository.GetByIdAsync(property.Id).Returns(property);

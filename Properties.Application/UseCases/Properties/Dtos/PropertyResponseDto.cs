@@ -8,9 +8,9 @@
         public decimal Price { get; init; }
         public int Year { get; init; }
         public string CodeInternal { get; init; } = default!;
-        public bool IsAvailable { get; init; } = default!;
         public Guid? OwnerId { get; init; }
         public string? OwnerName { get; init; }
         public required int ImagesCount { get; init; }
+        public required IEnumerable<string> ImagesUrl { get; init; }
     }
 }

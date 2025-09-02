@@ -6,7 +6,7 @@ using Properties.Application.UseCases.Properties.Dtos;
 
 namespace Properties.Api.Endpoints.Owners;
 
-internal sealed class AddProperty : IEndpoint
+public sealed class AddProperty : IEndpoint
 {
     public sealed class AddPropertyRequest
     {
