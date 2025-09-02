@@ -10,7 +10,7 @@ using static Properties.Api.Endpoints.Properties.AddImage;
 
 namespace Properties.Api.Endpoints.Owners;
 
-internal sealed class Create : IEndpoint
+public sealed class Create : IEndpoint
 {
     public sealed class CreateOwnerRequest
     {
@@ -38,6 +38,8 @@ internal sealed class Create : IEndpoint
         })
         .RequireAuthorization()
         .WithTags(Tags.Owners)
+        .WithSummary("Registra un nuevo propietario.")
+        .WithDescription("Crea un nuevo propietario, incluyendo sus datos personales y una foto.")
         .Accepts<UploadImageRequest>("multipart/form-data")
         .DisableAntiforgery();
     }

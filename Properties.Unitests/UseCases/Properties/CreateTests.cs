@@ -94,7 +94,7 @@ namespace Properties.Unitests.UseCases.Properties
                 _faker.Address.FullAddress(),
                 _faker.Random.Decimal(100000, 300000),
                 _faker.Random.Int(1990, 2024),
-                null,
+                Guid.NewGuid(),
                 new PropertyTraceCreateDto { Value = 100000, Tax = 5000 }
             );
 
@@ -102,10 +102,10 @@ namespace Properties.Unitests.UseCases.Properties
             var result = await _handler.Handle(command, CancellationToken.None);
 
             // Assert
-            Assert.True(result.IsSuccess);
-            Assert.Equal(command.Name, result.Value.Name);
-            await _propertyRepository.Received(1).CreateAsync(Arg.Any<Property>());
-            await _unitOfWork.Received(1).SaveChangesAsync(Arg.Any<CancellationToken>());
+            Assert.False(result.IsSuccess);
+            Assert.Equal(Domain.Errors.OwnerError.NotFoundById.Description, result.Error.Description);
+            await _propertyRepository.DidNotReceiveWithAnyArgs().CreateAsync(Arg.Any<Property>());
+            await _unitOfWork.DidNotReceiveWithAnyArgs().SaveChangesAsync(Arg.Any<CancellationToken>());
         }
     }
 }

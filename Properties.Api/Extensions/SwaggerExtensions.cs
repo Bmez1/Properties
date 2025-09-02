@@ -11,12 +11,25 @@ internal static class SwaggerExtensions
     {
         services.AddSwaggerGen(o =>
         {
+            o.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Properties API",
+                Version = "v1",
+                Description = "API para gestión de propiedades inmobiliarias",
+                Contact = new OpenApiContact
+                {
+                    Name = "Daniel Barros Agamez",
+                    Email = "daniel.barros.agamez@gmail.com",
+                    Url = new Uri("https://www.linkedin.com/in/dbarros-657fgh/"),
+                }
+            });
+
             o.CustomSchemaIds(id => id.FullName!.Replace('+', '-'));
 
             var securityScheme = new OpenApiSecurityScheme
             {
                 Name = "JWT Authentication",
-                Description = "Enter your JWT token in this field",
+                Description = "Ingrese el token de autenticación en este campo (solo el valor)",
                 In = ParameterLocation.Header,
                 Type = SecuritySchemeType.Http,
                 Scheme = JwtBearerDefaults.AuthenticationScheme,

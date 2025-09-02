@@ -4,8 +4,8 @@ namespace Properties.Domain.Entities
 {
     public class PropertyImage : EntityBase
     {
-        public string File { get; private set; } = default!;
-        public bool Enabled { get; private set; } = true;
+        public string File { get; private set; }
+        public bool Enabled { get; private set; }
 
         public Guid PropertyId { get; private set; }
         public Property Property { get; private set; } = default!;
@@ -16,6 +16,7 @@ namespace Properties.Domain.Entities
             Enabled = enabled;
             PropertyId = propertyId;
             CreatedAt = createdAt;
+            Enabled = true;
         }
 
         public static PropertyImage Create(string file) => new (file, true, Guid.NewGuid(), DateTime.UtcNow);

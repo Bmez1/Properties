@@ -1,6 +1,4 @@
-﻿using Crosscutting;
-
-using MediatR;
+﻿using MediatR;
 
 using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Owners.AddProperty;
@@ -8,12 +6,12 @@ using Properties.Application.UseCases.Properties.Dtos;
 
 namespace Properties.Api.Endpoints.Owners;
 
-internal sealed class AddProperty : IEndpoint
+public sealed class AddProperty : IEndpoint
 {
     public sealed class AddPropertyRequest
     {
-        public Guid PropertyId { get; set; } = default!;
-        public Guid OwnerId { get; set; } = default!;
+        public Guid PropertyId { get; set; }
+        public Guid OwnerId { get; set; }
         public AddPropertyTraceRequest Trace { get; set; } = default!;
     }
 
@@ -39,12 +37,12 @@ internal sealed class AddProperty : IEndpoint
 
             var result = await mediator.Send(command, cancellationToken);
 
-            return result.ToHttpResponse();
+            return result.ToHttpResponse(Results.Ok);
         })
         .RequireAuthorization()
         .WithTags(Tags.Owners)
-        .WithSummary("Assigns a property to an owner.")
-        .WithDescription("Creates a new ownership relationship between a property and an owner, including the value and tax trace.")
+        .WithSummary("Asigna una propiedad a un propietario.")
+        .WithDescription("Crea una nueva relación entre un propietario y una propiedad, incluyendo el valor y el impuesto del inmueble.")
         .WithOpenApi();
     }
 }

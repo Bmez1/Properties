@@ -1,6 +1,8 @@
 ﻿
 using MediatR;
 
+using Microsoft.AspNetCore.Mvc;
+
 using Properties.Api.HttpResponse;
 using Properties.Application.UseCases.Properties.Dtos;
 using Properties.Application.UseCases.Properties.Update;
@@ -11,7 +13,6 @@ namespace Properties.Api.Endpoints.Properties
     {
         public class UpdatePropertyRequest
         {
-            public Guid PropertyId { get; init; }
             public string Name { get; init; } = default!;
             public string Address { get; init; } = default!;
             public decimal Price { get; init; }
@@ -20,7 +21,7 @@ namespace Properties.Api.Endpoints.Properties
             public PropertyTraceUpdateRequest? Trace { get; init; }
 
 
-            public static explicit operator UpdatePropertyCommad(UpdatePropertyRequest dto)
+            public static UpdatePropertyCommad ToCommand(UpdatePropertyRequest dto, Guid propertyId)
             {
                 var trace = dto.Trace is null ? null : new PropertyTraceCreateDto
                 {
@@ -30,7 +31,7 @@ namespace Properties.Api.Endpoints.Properties
 
                 return new UpdatePropertyCommad
                 (
-                    dto.PropertyId,
+                    propertyId,
                     dto.Name,
                     dto.Address,
                     dto.Price,
@@ -49,14 +50,19 @@ namespace Properties.Api.Endpoints.Properties
 
         public void MapEndpoint(IEndpointRouteBuilder app)
         {
-            app.MapPut("properties", async (UpdatePropertyRequest request, IMediator mediator, CancellationToken cancellationToken) =>
+            app.MapPut("properties/{propertyId:guid}", async (
+                [FromRoute] Guid propertyId,
+                UpdatePropertyRequest request, 
+                IMediator mediator, 
+                CancellationToken cancellationToken) =>
             {
-                var result = await mediator.Send((UpdatePropertyCommad)request, cancellationToken);
-                return result.ToHttpResponse(); ;
+                var result = await mediator.Send((UpdatePropertyRequest.ToCommand(request, propertyId)), cancellationToken);
+                return result.ToHttpResponse();
             })
             .RequireAuthorization()
             .WithTags(Tags.Properties)
-            .WithDescription("Updates a property");
+            .WithSummary("Actualiza una propiedad.")
+            .WithDescription("Use este endpoint para actualizar todos los valores de una propiedad.");
         }
     }
 }

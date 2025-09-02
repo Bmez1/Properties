@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Properties.Infraestructure\Properties.Infraestructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Properties.IntegrationTests" />
+  </ItemGroup>
+
 </Project>

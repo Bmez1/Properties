@@ -22,7 +22,6 @@ builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configu
 builder.Services.AddVersioning();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGenWithAuth();
-builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
@@ -37,7 +36,6 @@ var app = builder.Build();
 
 ApiVersionSet apiVersionSet = app.NewApiVersionSet()
     .HasApiVersion(new ApiVersion(1))
-    .HasApiVersion(new ApiVersion(2))
     .ReportApiVersions()
     .Build();
 
@@ -71,3 +69,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.Run();
+
+public partial class Program { }

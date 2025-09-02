@@ -38,7 +38,7 @@ namespace Properties.Unitests.UseCases.Properties
                 _faker.Address.FullAddress(),
                 _faker.Random.Decimal(100000, 200000),
                 _faker.Random.Int(1990, 2024),
-                null,
+                Guid.NewGuid(),
                 null!
             );
 
@@ -118,10 +118,11 @@ namespace Properties.Unitests.UseCases.Properties
         public async Task Handle_Should_Update_Property_Without_Trace_When_Owner_Does_Not_Change()
         {
             // Arrange
-            var ownerId = Guid.NewGuid();
-            var property = Property.Create(_faker.Company.CompanyName(), _faker.Address.FullAddress(), 150000, 2020, ownerId);
+            var owner = Owner.Create(_faker.Person.FullName, _faker.Address.FullAddress(), DateOnly.FromDateTime(_faker.Date.Past(30)));
+            var property = Property.Create(_faker.Company.CompanyName(), _faker.Address.FullAddress(), 150000, 2020, owner.Id);
 
             _propertyRepository.GetByIdAsync(property.Id, true).Returns(property);
+            _ownerRepository.GetByIdAsync(owner.Id).Returns(owner);
 
             var command = new UpdatePropertyCommad(
                 property.Id,
@@ -129,7 +130,7 @@ namespace Properties.Unitests.UseCases.Properties
                 _faker.Address.FullAddress(),
                 170000,
                 2022,
-                ownerId,
+                owner.Id,
                 null!
             );
 

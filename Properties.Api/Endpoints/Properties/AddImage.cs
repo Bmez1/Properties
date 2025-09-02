@@ -30,6 +30,8 @@ namespace Properties.Api.Endpoints.Properties
                 return result.ToHttpResponse();
             })
             .RequireAuthorization()
+            .WithSummary("Asigna una imagen a una propiedad.")
+            .WithDescription("Asigna una imagen a una propiedad de máximo 5MB.")
             .WithTags(Tags.Properties)
             .Accepts<UploadImageRequest>("multipart/form-data")
             .DisableAntiforgery();

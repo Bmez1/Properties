@@ -13,15 +13,15 @@ namespace Properties.Application.UseCases.PropertyTraces.List
     {
         public async Task<Result<IEnumerable<PropertyTraceResponseDto>>> Handle(ListTracesQuery request, CancellationToken cancellationToken)
         {
-            int page = request.PageNumber == 0 ? 1 : request.PageNumber;
-            int pageSize = request.PageSize == 0 ? 10 : request.PageSize;
+            int page = request.PageNumber ?? 1;
+            int pageSize = request.PageSize ?? 10;
 
             var traces = propertyTraceRepository.GetAll()
                 .Where(x => x.PropertyId == request.PropertyId);
 
             var result = await traces
                 .OrderByDescending(x => x.DateSale)
-                .Skip((page - 1) * request.PageSize)
+                .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(x => new PropertyTraceResponseDto
                 {

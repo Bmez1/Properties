@@ -34,7 +34,7 @@ namespace Properties.Unitests.UseCases.Owners
         {
             // Arrange
             var owner = Owner.Create(_faker.Person.FullName, _faker.Address.FullAddress(), DateOnly.FromDateTime(_faker.Person.DateOfBirth));
-            var property = Property.Create("Test", "Some address", 100000, 2023);
+            var property = Property.Create("Test", "Some address", 100000, 2023, owner.Id);
 
             _ownerRepository.GetByIdAsync(owner.Id, true).Returns(owner);
             _propertyRepository.GetByIdAsync(property.Id).Returns(property);

@@ -5,19 +5,19 @@ namespace Properties.Domain.Entities
     public class Property : EntityBase
     {
         public const string NameDirectory = "Properties";
-        public string Name { get; private set; } = default!;
-        public string Address { get; private set; } = default!;
+        public string Name { get; private set; }
+        public string Address { get; private set; }
         public decimal Price { get; private set; }
-        public string CodeInternal { get; private set; } = default!;
+        public string CodeInternal { get; private set; }
         public int Year { get; private set; }
 
-        public Guid? OwnerId { get; private set; }
+        public Guid OwnerId { get; private set; }
         public Owner Owner { get; private set; } = default!;
 
         public ICollection<PropertyImage> Images { get; private set; } = [];
         public ICollection<PropertyTrace> Traces { get; private set; } = [];
 
-        private Property(Guid id, string name, string address, decimal price, string codeInternal, int year, Guid? ownerId, DateTime createdAt)
+        private Property(Guid id, string name, string address, decimal price, string codeInternal, int year, Guid ownerId, DateTime createdAt)
         {
             Id = id;
             Name = name;
@@ -29,7 +29,7 @@ namespace Properties.Domain.Entities
             CreatedAt = createdAt;
         }
 
-        public static Property Create(string name, string address, decimal price, int year, Guid? ownerId = null) =>
+        public static Property Create(string name, string address, decimal price, int year, Guid ownerId) =>
             new(Guid.NewGuid(), name, address, price, Guid.NewGuid().ToString(), year, ownerId, DateTime.UtcNow);
 
         public void AddImage(string file)
@@ -50,7 +50,7 @@ namespace Properties.Domain.Entities
             Price = newPrice;
         }
 
-        public void Update(string name, string address, decimal price, int year, Guid? ownerId)
+        public void Update(string name, string address, decimal price, int year, Guid ownerId)
         {
             Name = name;
             Address = address;

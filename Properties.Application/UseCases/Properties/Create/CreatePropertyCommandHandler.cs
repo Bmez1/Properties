@@ -19,14 +19,11 @@ namespace Properties.Application.UseCases.Properties.Create
         {
             var newProperty = Property.Create(request.Name, request.Address, request.Price, request.Year, request.OwnerId);
 
-            if (request.OwnerId is not null)
-            {
-                var owner = await ownerRepository.GetByIdAsync(request.OwnerId.Value);
-                if (owner is null)
-                    return Result.Failure<CreatePropertyResponseDto>(OwnerError.NotFoundById);
+            var owner = await ownerRepository.GetByIdAsync(request.OwnerId);
+            if (owner is null)
+                return Result.Failure<CreatePropertyResponseDto>(OwnerError.NotFoundById);
 
-                newProperty.AddTrace(owner.Name, DateTime.UtcNow, request.Trace.Value, request.Trace.Tax);
-            }
+            newProperty.AddTrace(owner.Name, DateTime.UtcNow, request.Trace.Value, request.Trace.Tax);
 
             await propertyRepository.CreateAsync(newProperty);
             await unitOfWork.SaveChangesAsync(cancellationToken);

@@ -18,6 +18,7 @@ El proyecto aplica Arquitectura limpia y sigue principios de Domain-Driven Desig
 - Repositorio (Repository Pattern)
 - Inyección de Dependencias (Dependency Injection)
 - CQRS (Command Query Responsibility Segregation)
+- JWT
 - Result
 - SOLID
 ## Tecnologías Utilizadas

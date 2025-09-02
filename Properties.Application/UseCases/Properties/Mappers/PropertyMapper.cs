@@ -14,7 +14,6 @@ namespace Properties.Application.UseCases.Properties.Mappers
                 Address = property.Address,
                 CodeInternal = property.CodeInternal,
                 Year = property.Year,
-                IsAvailable = property.OwnerId == null,
                 Price = property.Price
             };
         }
